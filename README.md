@@ -30,19 +30,6 @@ The main goal of EasyStay is to make the booking process easy, fast and clear fo
 * **Authentication:** Django built-in login system
 * **Languages:** English and Kazakh (i18n)
 
-## Project Structure
-
-```
-EasyStay/
-├── core/              # Main app (models, views, urls)
-├── templates/         # HTML pages
-├── static/            # CSS and images
-├── easystay_project/  # Project settings
-├── locale/            # Translation files
-├── manage.py
-└── .gitignore
-```
-
 
 ## Author
 
