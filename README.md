@@ -1,35 +1,49 @@
 # EasyStay
 
-EasyStay is a web-based hotel booking system built with Django. The project automates room booking and guest management for small and medium hotels, focusing on simplicity, clarity, and efficiency.
+EasyStay is a simple hotel booking web application. It helps guests book rooms online and helps hotel staff manage rooms and bookings easily.
 
-## Features
+## Project Goal
 
-### Guest
+The main goal of EasyStay is to make the booking process easy, fast and clear for both guests and hotel staff.
 
-* Search rooms by date, room type, and number of guests
-* View room details (photos, description, price)
-* Book a room by entering personal information
-* View and cancel personal bookings
+## Main Features
 
-### Admin
+### For Guests
 
-* Manage rooms (create, update, delete, set price and status)
-* Manage bookings (confirm, cancel)
-* Guest registration (check-in / check-out)
-* View basic reports on occupancy and revenue
+* Search rooms by date and room type
+* See room information (price, photos, description)
+* Book a room online
+* View and cancel own bookings
 
-## Tech Stack
+### For Admin (Hotel Staff)
 
-* **Backend:** Django
-* **Database:** SQLite (development)
-* **Frontend:** HTML, CSS (Django templates)
-* **Authentication:** Django built-in auth
-* **Internationalization:** Django i18n (EN, KK)
+* Add, edit, and delete rooms
+* Set room prices and status
+* Confirm or cancel bookings
+* Register guest check-in and check-out
+
+## Technologies Used
+
+* **Backend:** Django (Python)
+* **Database:** SQLite (for development)
+* **Frontend:** HTML, CSS
+* **Authentication:** Django built-in login system
+* **Languages:** English and Kazakh (i18n)
+
+## Project Structure
+
+```
+EasyStay/
+├── core/              # Main app (models, views, urls)
+├── templates/         # HTML pages
+├── static/            # CSS and images
+├── easystay_project/  # Project settings
+├── locale/            # Translation files
+├── manage.py
+└── .gitignore
+```
+
 
 ## Author
 
 Karakat Imangali
-
-## License
-
-This project is created for educational purposes.
