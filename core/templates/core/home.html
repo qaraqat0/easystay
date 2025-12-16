@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+
+<section class="hero">
+
+    <h1 class="title">EASYSTAY</h1>
+
+    <p class="subtitle">
+        {% trans "Easy stays for every journey" %}
+    </p>
+
+    <a href="{% url 'register' %}" class="btn-primary">
+        {% trans "Sign up" %}
+    </a>
+
+    <p class="login">
+        {% trans "Already have an account?" %}
+        <a href="{% url 'login' %}">{% trans "Sign in" %}</a>
+    </p>
+
+</section>
+
+{% endblock %}

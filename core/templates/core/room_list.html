@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Rooms" %}{% endblock %}
+
+{% block content %}
+
+<section class="rooms-page">
+
+    <h1 class="section-title">{% trans "Available rooms" %}</h1>
+
+    <!-- SEARCH -->
+    <form method="get" class="search-bar">
+        <input type="text" name="room_number" placeholder="{% trans 'Room number' %}">
+        <input type="number" name="min_price" placeholder="{% trans 'Min price' %}">
+        <input type="number" name="max_price" placeholder="{% trans 'Max price' %}">
+        <input type="number" name="floor" placeholder="{% trans 'Floor' %}">
+        <button type="submit">{% trans "Search" %}</button>
+    </form>
+
+    <!-- ROOMS -->
+    <div class="rooms-grid">
+        {% for room in rooms %}
+            <div class="room-card">
+
+               {% with photo=room.photos.first %}
+    {% if photo and photo.image %}
+        <img src="{{ photo.image.url }}"
+             alt="Room image"
+             class="room-image">
+    {% endif %}
+{% endwith %}
+
+                <h3>{% trans "Room" %} {{ room.room_number }}</h3>
+
+                <p>{% trans "Type" %}: {{ room.room_type.type_name }}</p>
+                <p>{% trans "Floor" %}: {{ room.floor }}</p>
+                <p>{{ room.room_type.base_price }} ₸</p>
+
+                <a href="{% url 'room_detail' room.id %}" class="details-link">
+                    {% trans "View details" %}
+                </a>
+
+            </div>
+        {% empty %}
+            <p>{% trans "No rooms found" %}</p>
+        {% endfor %}
+    </div>
+
+</section>
+
+{% endblock %}

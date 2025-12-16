@@ -1,0 +1,26 @@
+{% load i18n %}
+
+<h1>{% trans "Search Results" %}</h1>
+
+<p>
+    {% trans "Search query" %}: {{ query }} <br>
+    {% if min_price %}{% trans "Min price" %}: {{ min_price }} <br>{% endif %}
+    {% if max_price %}{% trans "Max price" %}: {{ max_price }} <br>{% endif %}
+    {% if floor %}{% trans "Floor" %}: {{ floor }} <br>{% endif %}
+</p>
+
+{% if rooms %}
+<ul>
+    {% for room in rooms %}
+        <li>
+            {% trans "Room" %} {{ room.room_number }}
+            — {{ room.price }} ₸
+            — {% trans "Floor" %}: {{ room.floor }}
+        </li>
+    {% endfor %}
+</ul>
+{% else %}
+    <p>{% trans "No matching rooms found." %}</p>
+{% endif %}
+
+<a href="{% url 'home' %}">{% trans "Back to home" %}</a>

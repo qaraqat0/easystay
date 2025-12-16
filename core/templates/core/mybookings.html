@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "My bookings" %}{% endblock %}
+
+{% block content %}
+
+<section class="my-bookings">
+
+    <h1>{% trans "My bookings" %}</h1>
+
+    {% if bookings %}
+        <div class="bookings-list">
+            {% for booking in bookings %}
+                <div class="booking-card">
+
+                    <h3>
+                        {% trans "Room" %} {{ booking.room.room_number }}
+                    </h3>
+
+                    <p>
+                        <strong>{% trans "Type" %}:</strong>
+                        {{ booking.room.room_type.type_name }}
+                    </p>
+
+                    <p>
+                        <strong>{% trans "Check-in" %}:</strong>
+                        {{ booking.checkin_date }}
+                    </p>
+
+                    <p>
+                        <strong>{% trans "Check-out" %}:</strong>
+                        {{ booking.checkout_date }}
+                    </p>
+
+                    <p>
+                        <strong>{% trans "Status" %}:</strong>
+                        {{ booking.status }}
+                    </p>
+
+                    {% if booking.status != "cancelled" %}
+                        <a href="{% url 'cancel_booking' booking.id %}"
+                           class="btn-cancel">
+                            {% trans "Cancel booking" %}
+                        </a>
+                    {% endif %}
+                    {% if booking.status == "pending" %}
+
+{% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>{% trans "You have no bookings yet." %}</p>
+    {% endif %}
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}EasyStay{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="logo">EasyStay</div>
+
+    <div class="nav-links">
+        <a href="{% url 'home' %}">{% trans "Home" %}</a>
+        <a href="{% url 'room_list' %}">{% trans "Rooms" %}</a>
+
+        {% if user.is_authenticated %}
+            <a href="{% url 'mybookings' %}">{% trans "My Bookings" %}</a>
+            <a href="{% url 'logout' %}">{% trans "Logout" %}</a>
+        {% else %}
+            <a href="{% url 'login' %}">{% trans "Login" %}</a>
+            <a href="{% url 'register' %}">{% trans "Register" %}</a>
+        {% endif %}
+    </div>
+
+    <form action="{% url 'set_language' %}" method="post" class="lang-switch">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.path }}">
+
+        <select name="language" onchange="this.form.submit()">
+            <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>EN</option>
+            <option value="kk" {% if LANGUAGE_CODE == 'kk' %}selected{% endif %}>KZ</option>
+        </select>
+    </form>
+</nav>
+
+{% if messages %}
+  <div class="messages-container" style="padding: 10px; margin-bottom: 20px;">
+    {% for message in messages %}
+      <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" style="padding: 10px; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: 4px; margin-bottom: 5px;">
+        {{ message }}
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+</body>
+</html>

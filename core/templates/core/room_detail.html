@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+{% trans "Room" %} {{ room.room_number }}
+{% endblock %}
+
+{% block content %}
+
+<section class="room-detail">
+
+    <h1>{% trans "Room" %} {{ room.room_number }}</h1>
+
+    <p><strong>{% trans "Type" %}:</strong> {{ room.room_type.type_name }}</p>
+    <p><strong>{% trans "Floor" %}:</strong> {{ room.floor }}</p>
+    <p><strong>{% trans "Price" %}:</strong> {{ room.room_type.base_price }} ₸</p>
+
+    <h3>{% trans "Photos" %}</h3>
+
+    {% if photos %}
+        <div class="room-photos">
+    {% for photo in photos %}
+        {% if photo.image %}
+            <img src="{{ photo.image.url }}"
+                 alt="Room photo"
+                 class="room-detail-image">
+        {% endif %}
+    {% endfor %}
+</div>
+    {% else %}
+        <p>{% trans "No photos available" %}</p>
+    {% endif %}
+
+    <br>
+
+    {% if user.is_authenticated %}
+        
+    {% else %}
+        <p>
+            <a href="{% url 'login' %}">
+                {% trans "Login to book this room" %}
+            </a>
+        </p>
+    {% endif %}
+
+    <br><br>
+    <a href="{% url 'book_room' room.id %}" class="btn-book">
+    {% if LANGUAGE_CODE == 'kk' %}
+        Бөлмені брондау
+    {% else %}
+        Book room
+    {% endif %}
+</a>
+
+<a href="{% url 'room_list' %}" class="btn-back">
+    {% if LANGUAGE_CODE == 'kk' %}
+        Бөлмелерге оралу
+    {% else %}
+        Back to rooms
+    {% endif %}
+</a>
+</section>
+
+{% endblock %}

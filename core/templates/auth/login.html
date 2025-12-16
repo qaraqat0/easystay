@@ -1,0 +1,23 @@
+{% load i18n %}
+
+<h1>{% trans "Login" %}</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">{% trans "Login" %}</button>
+</form>
+
+<p>{% trans "Don't have an account?" %} 
+    <a href="{% url 'register' %}">{% trans "Register here" %}</a>
+</p>
+
+<form action="{% url 'set_language' %}" method="post">
+    {% csrf_token %}
+    <select name="language">
+        <option value="en">English</option>
+        <option value="kk">Kazakh</option>
+        <option value="ru">Russian</option>
+    </select>
+    <button type="submit">{% trans "Change language" %}</button>
+</form>
